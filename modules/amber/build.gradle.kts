@@ -1,0 +1,15 @@
+dependencies {
+    api(Deps.kotlinCoroutines)
+    api(Deps.kotlinSerializationRuntime)
+    api(Deps.kotlinSerializationYamlSupport)
+    api(Deps.klock)
+    api(Deps.ktorServer)
+    api(Deps.ktorServerNetty)
+    api(Deps.ktorServerWebSocket)
+    api(Deps.ktorClient)
+    api(Deps.ktorClientJetty)
+    api(Deps.ktorClientCio)
+    api(Deps.ktorClientApache)
+    api(Deps.ktorClientOkHttp)
+    api(Deps.ktorHTMLBuilder)
+}
