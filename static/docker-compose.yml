@@ -1,0 +1,15 @@
+version: '3'
+services:
+  montreee-core:
+    build: .
+    ports:
+      - "8056:8056"
+    command: module core -l debug
+  montreee-render:
+    build: .
+    command: module render -l debug -c host "montreee-core"
+  montreee-webui:
+    build: .
+    ports:
+      - "80:80"
+    command: module webui -l debug

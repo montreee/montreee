@@ -1,0 +1,27 @@
+package amber.properties
+
+open class AnyProperty(initValue: Any) : Property<Any>(initValue)
+open class BooleanProperty(initValue: Boolean) : Property<Boolean>(initValue)
+open class ByteProperty(initValue: Byte) : Property<Byte>(initValue)
+open class CharProperty(initValue: Char) : Property<Char>(initValue)
+open class DoubleProperty(initValue: Double) : Property<Double>(initValue)
+open class FloatProperty(initValue: Float) : Property<Float>(initValue)
+open class IntProperty(initValue: Int) : Property<Int>(initValue)
+open class LongProperty(initValue: Long) : Property<Long>(initValue)
+open class NumberProperty(initValue: Number) : Property<Number>(initValue)
+open class ShortProperty(initValue: Short) : Property<Short>(initValue)
+open class StringProperty(initValue: String) : Property<String>(initValue)
+
+open class NullableProperty<T>(initValue: T? = null) : Property<T?>(initValue)
+
+open class NullableAnyProperty(initValue: Any? = null) : NullableProperty<Any>(initValue)
+open class NullableBooleanProperty(initValue: Boolean? = null) : NullableProperty<Boolean>(initValue)
+open class NullableByteProperty(initValue: Byte? = null) : NullableProperty<Byte>(initValue)
+open class NullableCharProperty(initValue: Char? = null) : NullableProperty<Char>(initValue)
+open class NullableDoubleProperty(initValue: Double? = null) : NullableProperty<Double>(initValue)
+open class NullableFloatProperty(initValue: Float? = null) : NullableProperty<Float>(initValue)
+open class NullableIntProperty(initValue: Int? = null) : NullableProperty<Int>(initValue)
+open class NullableLongProperty(initValue: Long? = null) : NullableProperty<Long>(initValue)
+open class NullableNumberProperty(initValue: Number? = null) : NullableProperty<Number>(initValue)
+open class NullableShortProperty(initValue: Short? = null) : NullableProperty<Short>(initValue)
+open class NullableStringProperty(initValue: String? = null) : NullableProperty<String>(initValue)

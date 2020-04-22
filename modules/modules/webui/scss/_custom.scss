@@ -1,0 +1,32 @@
+
+.#{$prefix}searchbar > .input-group > .form-control {
+  background-color: $form-text-input-bg-color;
+  border-color: $form-text-input-border-color;
+  border-width: 0;
+}
+
+.#{$prefix}searchbar > .input-group > .form-control:focus {
+  border-width: 0;
+  box-shadow: 0 0 0 0;
+}
+
+.#{$prefix}searchbar > .input-group > .input-group-prepend > .input-group-text {
+  padding-right: 0;
+  border-color: $form-text-input-border-color;
+  background-color: $form-text-input-bg-color;
+}
+
+/*custom*/
+.breadcrumb {
+  border-bottom: 0 solid;
+}
+
+.breadcrumb .separator {
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  color: #8d8c8e;
+}
+
+#ui-view {
+  margin-top: 3.5rem !important;
+}

@@ -1,0 +1,3 @@
+window.CoreUIDefaults = {
+    prefix: "montreee-"
+};

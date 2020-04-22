@@ -1,0 +1,13 @@
+development: false
+dir:
+  work: "."
+  plugins: "${dir.work}/plugins"
+  data: "${dir.work}/data"
+  webui: "${dir.data}/webui"
+port: 8056
+host: "localhost"
+encryption: false
+auto_retry: true
+auto_retry_delay: 5000
+webui:
+  port: 80
