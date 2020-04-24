@@ -1,28 +1,6 @@
 name: CI
 on: [push, pull_request]
 jobs:
-  build:
-    runs-on: linux
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '13'
-        java-package: jdk
-    - run: chmod +x gradlew
-    - name: Build
-      run: ./gradlew build --stacktrace
-  test:
-    runs-on: linux
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '13'
-        java-package: jdk
-    - run: chmod +x gradlew
-    - name: Test
-      run: ./gradlew test --stacktrace
   install:
     runs-on: linux
     steps:
