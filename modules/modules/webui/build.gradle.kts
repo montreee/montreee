@@ -1,6 +1,6 @@
 plugins {
     id("com.github.salomonbrys.gradle.sass") version "1.2.0"
-    id("org.padler.gradle.minify") version "1.4.1"
+    id("org.padler.gradle.minify") version "1.5.0"
 }
 
 dependencies {
