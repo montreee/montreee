@@ -8,7 +8,7 @@ import io.ktor.application.Application as KtorApplication
 
 val webuiDataFolder get() = File(Application.module.config.dir.webui)
 
-fun KtorApplication.application() {
-    installStatusPages()
-    routing { routes() }
+fun KtorApplication.application(context: ApplicationContext) {
+    installStatusPages(context)
+    routing { routes(context) }
 }

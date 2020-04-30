@@ -1,4 +1,4 @@
-package de.contentup.montreee.modules.webui.repository.treee
+package de.contentup.montreee.modules.webui.repository
 
 class Path(val value: String) {
 

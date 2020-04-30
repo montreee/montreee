@@ -1,9 +1,9 @@
-package de.contentup.montreee.modules.webui.repository.treee.impl
+package de.contentup.montreee.modules.webui.repository.impl
 
 import amber.collections.sync
-import de.contentup.montreee.modules.webui.repository.treee.Element
-import de.contentup.montreee.modules.webui.repository.treee.Path
-import de.contentup.montreee.modules.webui.repository.treee.Repository
+import de.contentup.montreee.modules.webui.repository.Element
+import de.contentup.montreee.modules.webui.repository.Path
+import de.contentup.montreee.modules.webui.repository.Repository
 
 class InMemoryListRepository(list: MutableList<Element> = mutableListOf()) : Repository {
 

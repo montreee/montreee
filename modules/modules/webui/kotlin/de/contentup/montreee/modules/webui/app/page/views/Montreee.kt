@@ -1,5 +1,6 @@
 package de.contentup.montreee.modules.webui.app.page.views
 
+import de.contentup.montreee.modules.webui.app.ApplicationContext
 import de.contentup.montreee.modules.webui.app.htmlDsl.comment
 import de.contentup.montreee.modules.webui.app.util.respondRawHtmlWithSectionComments
 import io.ktor.application.ApplicationCall
@@ -22,7 +23,7 @@ object teststuff {
     }
 }
 
-suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView() {
+suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: ApplicationContext) {
     val path = call.parameters.getAll("path")?.joinToString("/") ?: ""
     val fullPath = if (!path.isBlank()) "montreee/$path" else "montreee"
     val content = if (path.isBlank()) {

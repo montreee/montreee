@@ -1,5 +1,6 @@
 package de.contentup.montreee.modules.webui.app.page.views
 
+import de.contentup.montreee.modules.webui.app.ApplicationContext
 import de.contentup.montreee.modules.webui.app.StaticLinks
 import de.contentup.montreee.modules.webui.app.htmlDsl.comment
 import de.contentup.montreee.modules.webui.app.htmlDsl.tags.script
@@ -12,7 +13,7 @@ import io.ktor.util.pipeline.PipelineContext
 import kotlinx.html.div
 import kotlinx.html.main
 
-suspend fun PipelineContext<Unit, ApplicationCall>.mainView() {
+suspend fun PipelineContext<Unit, ApplicationCall>.mainView(context: ApplicationContext) {
     call.respondRawHtmlWithSectionComments {
         comment("view") {
 
