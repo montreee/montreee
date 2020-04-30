@@ -6,7 +6,7 @@ import io.ktor.request.path
 import io.ktor.response.respondFile
 import io.ktor.util.pipeline.PipelineContext
 
-suspend fun PipelineContext<Unit, ApplicationCall>.fallback() {
+suspend fun PipelineContext<Unit, ApplicationCall>.fallback(context: ApplicationContext) {
     val path = call.request.path()
     val safePath = if (path.startsWith("/")) path.removePrefix("/") else path
     val file = webuiDataFolder.resolve(safePath)

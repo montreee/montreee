@@ -5,7 +5,7 @@ import io.ktor.routing.Routing
 import io.ktor.routing.get
 import io.ktor.routing.route
 
-fun Routing.pages() {
-    get("/") { index() }
-    route("views") { views() }
+fun Routing.pages(context: ApplicationContext) {
+    get("/") { index(context) }
+    route("views") { views(context) }
 }

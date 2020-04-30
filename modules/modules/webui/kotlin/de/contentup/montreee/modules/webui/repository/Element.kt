@@ -1,4 +1,4 @@
-package de.contentup.montreee.modules.webui.repository.treee
+package de.contentup.montreee.modules.webui.repository
 
 sealed class Element(val path: Path) {
     class Folder(path: Path) : Element(path)

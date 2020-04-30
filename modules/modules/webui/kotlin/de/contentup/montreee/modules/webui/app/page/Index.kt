@@ -1,5 +1,6 @@
 package de.contentup.montreee.modules.webui.app.page
 
+import de.contentup.montreee.modules.webui.app.ApplicationContext
 import de.contentup.montreee.modules.webui.app.StaticLinks
 import de.contentup.montreee.modules.webui.app.htmlDsl.comment
 import de.contentup.montreee.modules.webui.app.htmlDsl.tags.html5Doctype
@@ -11,7 +12,7 @@ import io.ktor.application.call
 import io.ktor.util.pipeline.PipelineContext
 import kotlinx.html.*
 
-suspend fun PipelineContext<Unit, ApplicationCall>.index() {
+suspend fun PipelineContext<Unit, ApplicationCall>.index(context: ApplicationContext) {
     call.respondRawHtmlWithSectionComments {
 
         html5Doctype()

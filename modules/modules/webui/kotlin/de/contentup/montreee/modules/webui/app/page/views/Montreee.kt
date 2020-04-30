@@ -1,35 +1,21 @@
 package de.contentup.montreee.modules.webui.app.page.views
 
+import de.contentup.montreee.modules.webui.app.ApplicationContext
 import de.contentup.montreee.modules.webui.app.htmlDsl.comment
 import de.contentup.montreee.modules.webui.app.util.respondRawHtmlWithSectionComments
+import de.contentup.montreee.modules.webui.repository.Element
+import de.contentup.montreee.modules.webui.repository.childes
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.util.pipeline.PipelineContext
 import kotlinx.html.*
 
-object teststuff {
-    fun resolve(path: String): Map<String, String> {
-        val element = path.substringAfterLast("/")
-        return if (element.startsWith("file")) mapOf()
-        else mutableMapOf<String, String>().apply {
-            repeat(5) {
-                this["folder${it + 1}"] = "Folder"
-            }
-            repeat(5) {
-                this["file${it + 1}"] = "File"
-            }
-        }
-    }
-}
-
-suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView() {
+suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: ApplicationContext) {
     val path = call.parameters.getAll("path")?.joinToString("/") ?: ""
     val fullPath = if (!path.isBlank()) "montreee/$path" else "montreee"
-    val content = if (path.isBlank()) {
-        teststuff.resolve("")
-    } else {
-        teststuff.resolve(path)
-    }
+    val pathPrefix = "montreee"
+    val content = context.repository.childes(path.ifBlank { "" })
+
     call.respondRawHtmlWithSectionComments {
         comment("view") {
 
@@ -86,16 +72,16 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView() {
                                     div(classes = "card-body") {
                                         content.forEach {
                                             div(classes = "row px-4 py-1") {
-                                                when (it.value) {
-                                                    "Folder", "File" -> {
+                                                when (it) {
+                                                    is Element.Folder -> {
                                                         a(classes = "montreee-xhr-link") {
-                                                            href = "$fullPath/${it.key}"
-                                                            +it.key
+                                                            href = "$pathPrefix/${it.path}"
+                                                            +it.path.element
                                                         }
                                                     }
-                                                    else             -> {
+                                                    else              -> {
                                                         a(classes = "disabled") {
-                                                            +it.key
+                                                            +it.path.element
                                                         }
                                                     }
                                                 }

@@ -90,7 +90,7 @@ val httpStatusInformation
             HttpStatusInformation(599, "Network Connect Timeout Error")
     )
 
-fun Application.installStatusPages() {
+fun Application.installStatusPages(context: ApplicationContext) {
     install(StatusPages) {
         val handledStatusCodes = mutableListOf<HttpStatusCode>().apply {
             httpStatusInformation.forEach { add(HttpStatusCode.fromValue(it.code)) }
@@ -101,7 +101,7 @@ fun Application.installStatusPages() {
     }
 }
 
-fun Route.status() {
+fun Route.status(context: ApplicationContext) {
     httpStatusInformation.forEach { status ->
         get(status.code.toString()) {
             respondHtmlStatusCodePage(status)
