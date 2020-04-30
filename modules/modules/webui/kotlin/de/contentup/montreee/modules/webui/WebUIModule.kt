@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
 class WebUIModule(version: Version) : MontreeeModule("Montreee WebUI Module", version) {
 
     private val applicationContext = ApplicationContext(
-            InMemoryListRepository()
+            InMemoryListRepository(TestData.list)
     )
 
     private val serverLogger by lazy { Log4JAdapter(Logger("WebUi Server Logger", logger)) }

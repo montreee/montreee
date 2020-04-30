@@ -9,7 +9,8 @@ class InMemoryListRepository(list: MutableList<Element> = mutableListOf()) : Rep
 
     private val list = list.sync()
 
-    override fun find(path: Path): Element? = list.synchronized {
+    override fun find(path: Path): Element? = list.synchronized func@{
+        if (path.value.isBlank()) return@func Element.Folder(Path(""))
         list.find { it.path == path }
     }
 

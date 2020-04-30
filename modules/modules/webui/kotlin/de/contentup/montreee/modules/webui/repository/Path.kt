@@ -8,8 +8,8 @@ class Path(val value: String) {
     constructor(vararg parent: String, element: String) : this(parent.asList(), element)
 
     val trace = value.split("/")
-    val parents = trace.takeWhile { it !== element }
     val element = trace.last()
+    val parents = trace.filter { it !== element }
 
     val parent get() = Path(parents)
 
@@ -25,5 +25,7 @@ class Path(val value: String) {
         if (other.trace != trace) return false
         return true
     }
+
+    override fun toString() = value
 
 }
