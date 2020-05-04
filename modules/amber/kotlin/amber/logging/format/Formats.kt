@@ -20,12 +20,13 @@ object Formats {
                 }
                 append(" } ")
             }
-            append(": $message")
+            append(if (message.isBlank()) ":" else ": $message")
             if (childes.isEmpty()) return@buildString
+            append("\n")
             append(
                     buildString {
-                        childes.forEach {
-                            append("\n")
+                        childes.forEachIndexed { i, it ->
+                            if (i > 0) append("\n")
                             append(it.format())
                         }
                     }.prependIndent()
@@ -44,10 +45,11 @@ object Formats {
                 }
                 append(" } ")
             }
-            append(": $message")
+            append(if (message.isBlank()) ":" else ": $message")
             if (childes.isEmpty()) return@buildString
-            childes.forEach {
-                append("\n")
+            append("\n")
+            childes.forEachIndexed { i, it ->
+                if (i > 0) append("\n")
                 append(it.format())
             }
         }
@@ -65,10 +67,11 @@ object Formats {
                 }
                 append(" } ")
             }
-            append(": $message")
+            append(if (message.isBlank()) ":" else ": $message")
             if (childes.isEmpty()) return@buildString
-            childes.forEach {
-                append("\n")
+            append("\n")
+            childes.forEachIndexed { i, it ->
+                if (i > 0) append("\n")
                 append(it.formatWithLoggerPrefix("$prefix${logger.name}|"))
             }
         }

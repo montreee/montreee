@@ -4,9 +4,10 @@ import amber.event.Event
 import amber.event.Executor
 import amber.logging.receiver.ParentLogReceiver
 
-fun Logger(name: String, parent: Logger? = null, executor: Executor<Log>? = null) = Logger(name, executor).apply {
-    if (parent != null) add(ParentLogReceiver(parent))
-}
+fun Logger(name: String, parent: Logger? = null, executor: Executor<Log>? = null, reuseTime: Boolean = false) =
+        Logger(name, executor).apply {
+            if (parent != null) add(ParentLogReceiver(parent, reuseTime))
+        }
 
 open class Logger(val name: String, executor: Executor<Log>? = null) {
 
