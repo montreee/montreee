@@ -1,9 +1,9 @@
 package amber.properties
 
 import amber.properties.exceptions.IllegalSetPropertyException
-import io.kotlintest.shouldBe
-import io.kotlintest.shouldThrowExactlyUnit
-import io.kotlintest.specs.AnnotationSpec
+import io.kotest.assertions.throwables.shouldThrowExactlyUnit
+import io.kotest.core.spec.style.AnnotationSpec
+import io.kotest.matchers.shouldBe
 
 class BindingTest : AnnotationSpec() {
 

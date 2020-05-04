@@ -3,14 +3,14 @@ package amber.collections
 import amber.coroutines.joinAllJobs
 import amber.sync.SyncMode
 import amber.sync.Synchronized
-import io.kotlintest.forAll
-import io.kotlintest.matchers.concurrent.shouldCompleteWithin
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.AnnotationSpec
-import io.kotlintest.tables.forAll
-import io.kotlintest.tables.headers
-import io.kotlintest.tables.row
-import io.kotlintest.tables.table
+import io.kotest.core.spec.style.AnnotationSpec
+import io.kotest.data.forAll
+import io.kotest.data.headers
+import io.kotest.data.row
+import io.kotest.data.table
+import io.kotest.inspectors.forAll
+import io.kotest.matchers.concurrent.shouldCompleteWithin
+import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
@@ -56,7 +56,7 @@ class SyncMutableListTest : AnnotationSpec() {
             table(
                     headers("factor", "syncMode"), row(arrayOf(10, 20, 30), SyncMode.UNSAFE_EXECUTOR)
             ).forAll { a, b ->
-                forAll(a) {
+                a.forAll {
                     runBlocking { testWith(it, b) }
                 }
             }
@@ -69,7 +69,7 @@ class SyncMutableListTest : AnnotationSpec() {
             table(
                     headers("factor", "syncMode"), row(arrayOf(10, 20, 30), SyncMode.SAFE_EXECUTOR)
             ).forAll { a, b ->
-                forAll(a) {
+                a.forAll {
                     runBlocking { testWith(it, b) }
                 }
             }
@@ -82,7 +82,7 @@ class SyncMutableListTest : AnnotationSpec() {
             table(
                     headers("factor", "syncMode"), row(arrayOf(10, 20, 30), SyncMode.HEAVY_EXECUTOR)
             ).forAll { a, b ->
-                forAll(a) {
+                a.forAll {
                     runBlocking { testWith(it, b) }
                 }
             }
@@ -95,7 +95,7 @@ class SyncMutableListTest : AnnotationSpec() {
             table(
                     headers("factor", "syncMode"), row(arrayOf(10, 20, 30, 100), SyncMode.KOTLIN)
             ).forAll { a, b ->
-                forAll(a) {
+                a.forAll {
                     runBlocking { testWith(it, b) }
                 }
             }

@@ -4,11 +4,11 @@ jobs:
   install:
     runs-on: linux
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '13'
-        java-package: jdk
-    - run: chmod +x gradlew
-    - name: Install
-      run: ./gradlew install --stacktrace
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '13'
+          java-package: jdk
+      - run: chmod +x gradlew
+      - name: Install
+        run: ./gradlew install --stacktrace

@@ -7,7 +7,9 @@ dependencies {
     api(project(":modules"))
     api(project(":cli"))
 
-    api(Deps.kotlinTest)
+    testApi(Deps.kotest)
+    testApi(Deps.kotestAssertionCore)
+    testApi(Deps.mockk)
 }
 
 tasks.test {

@@ -3,11 +3,12 @@ object Versions {
     val kotlinCoroutines = "1.2.1"
     val kotlinSerializationRuntime = "0.14.0"
     val kotlinSerializationYamlSupport = "0.15.0"
-    val kotlinTest = "3.3.2"
     val ktor = "1.3.0"
     val klock = "1.0.0"
     val clikt = "2.1.0"
-    val kotlinArgparser = "2.0.7"
+
+    val kotest = "4.0.3"
+    val mockk = "1.10.0"
 }
 
 object Deps {
@@ -17,7 +18,6 @@ object Deps {
     val kotlinSerializationRuntime =
             "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinSerializationRuntime}"
     val kotlinSerializationYamlSupport = "com.charleskorn.kaml:kaml:${Versions.kotlinSerializationYamlSupport}"
-    val kotlinTest = "io.kotlintest:kotlintest-runner-junit5:${Versions.kotlinTest}"
     val klock = "com.soywiz:klock-jvm:${Versions.klock}"
     val ktorServer = "io.ktor:ktor-server-core:${Versions.ktor}"
     val ktorServerWebSocket = "io.ktor:ktor-websockets:${Versions.ktor}"
@@ -29,5 +29,8 @@ object Deps {
     val ktorClientApache = "io.ktor:ktor-client-apache:${Versions.ktor}"
     val ktorClientOkHttp = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
     val clikt = "com.github.ajalt:clikt:${Versions.clikt}"
-    val kotlinArgparser = "com.xenomachina:kotlin-argparser:${Versions.kotlinArgparser}"
+
+    val kotest = "io.kotest:kotest-runner-junit5:${Versions.kotest}"
+    val kotestAssertionCore = "io.kotest:kotest-assertions-core-jvm:${Versions.kotest}"
+    val mockk = "io.mockk:mockk:${Versions.mockk}"
 }

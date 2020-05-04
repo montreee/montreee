@@ -40,6 +40,9 @@ allprojects {
         }
     }
 
+    tasks.compileTestKotlin {
+        kotlinOptions.jvmTarget = "1.8"
+    }
     tasks.compileKotlin {
         kotlinOptions.jvmTarget = "1.8"
     }
@@ -74,7 +77,7 @@ allprojects {
     dependencies {
         lib(project(path))
         subprojects.forEach {
-            lib(project(it.path))
+            lib(project(it.path, "lib"))
         }
     }
 }

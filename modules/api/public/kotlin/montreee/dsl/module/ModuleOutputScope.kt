@@ -10,6 +10,7 @@ import montreee.result.StringResultElement
 
 @ModuleDsl
 class ModuleOutputScope(private val renderContext: RenderContext) {
+
     private val context get() = renderContext.context
     private val out get() = renderContext.out
     private val page get() = renderContext.page

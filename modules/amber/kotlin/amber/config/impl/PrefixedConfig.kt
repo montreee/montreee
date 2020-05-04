@@ -6,5 +6,6 @@ class PrefixedConfig(private var prefix: String, private val impl: Config) : Con
     init {
         if (!prefix.endsWith(".")) prefix += "."
     }
+
     override fun find(path: String) = impl["$prefix$path"]
 }
