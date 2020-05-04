@@ -70,7 +70,7 @@ fun main() {
     )
 
     receiver.forEachIndexed { i, e ->
-        if(i > 0) main.remove(receiver[i - 1])
+        if (i > 0) main.remove(receiver[i - 1])
         main.add(e)
         log()
         println()

@@ -1,8 +1,8 @@
 package amber.sync
 
 import amber.coroutines.joinAllJobs
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.AnnotationSpec
+import io.kotest.core.spec.style.AnnotationSpec
+import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 

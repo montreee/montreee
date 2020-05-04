@@ -8,8 +8,8 @@ import amber.api.server.method
 import amber.bdtp.Engine
 import amber.bdtp.impl.LocalImpl
 import amber.coroutines.scope
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.AnnotationSpec
+import io.kotest.core.spec.style.AnnotationSpec
+import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.Dispatchers
 
 class LocalBdtpServerClientTest : AnnotationSpec() {
