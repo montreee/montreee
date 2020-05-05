@@ -78,7 +78,7 @@ class RenderModule(version: Version) : MontreeeModule("Montreee Render Module", 
     private lateinit var bdtpApiImpl: BdtpApiImpl
 
     override fun launch() {
-        Slf4JLogBinder.logger = Logger("slf4j", logger)
+        Slf4JLogBinder.register(logger)
 
         apiClient = KtorWSBdtpApiClient(
                 config.core.host,

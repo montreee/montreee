@@ -30,7 +30,7 @@ class WebUIModule(version: Version) : MontreeeModule("Montreee WebUI Module", ve
     }
 
     override fun launch() {
-        Slf4JLogBinder.logger = Logger("slf4j", logger)
+        Slf4JLogBinder.register(logger)
 
         server.start()
     }
