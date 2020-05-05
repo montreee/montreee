@@ -31,7 +31,7 @@ class StandaloneModule(version: Version) : MontreeeModule("Montreee Standalone M
     }
 
     override fun launch() {
-        Slf4JLogBinder.logger = Logger("slf4j", logger)
+        Slf4JLogBinder.register(logger)
 
         webuiServer.start()
     }

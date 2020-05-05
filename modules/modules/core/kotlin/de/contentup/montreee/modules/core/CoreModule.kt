@@ -83,7 +83,7 @@ class CoreModule(version: Version) : MontreeeModule("Montreee Core Module", vers
     private val apiImpl = BdtpApiImpl(api, serverBdtpEngine)
 
     override fun launch() {
-        Slf4JLogBinder.logger = Logger("slf4j", logger)
+        Slf4JLogBinder.register(logger)
         apiImpl.start()
         serverBdtpImpl.start()
     }
