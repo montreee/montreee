@@ -5,10 +5,10 @@ import io.kotest.assertions.throwables.shouldThrowExactlyUnit
 import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
 
-class BindingTest : AnnotationSpec() {
+class `property binding - integration` : AnnotationSpec() {
 
     @Test
-    fun `basic binding`() {
+    fun `basic binding - integration`() {
 
         val property1 = StringProperty("1")
         val property2 = StringProperty("2")
@@ -27,7 +27,7 @@ class BindingTest : AnnotationSpec() {
     }
 
     @Test
-    fun `bidirectional binding`() {
+    fun `bidirectional binding - integration`() {
 
         val property1 = StringProperty("1")
         val property2 = StringProperty("2")

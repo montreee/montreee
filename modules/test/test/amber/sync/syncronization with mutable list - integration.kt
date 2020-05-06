@@ -6,12 +6,12 @@ import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 
-class SyncListTest : AnnotationSpec() {
+class `syncronization with mutable list - integration` : AnnotationSpec() {
 
     private val factor = 50
 
     @Test
-    suspend fun `suspending concurrent add`() {
+    suspend fun `suspending concurrent add - integration`() {
         coroutineScope {
             val list = mutableListOf<String>()
             val synchronized = Synchronized(SyncMode.SAFE_EXECUTOR)
@@ -43,7 +43,7 @@ class SyncListTest : AnnotationSpec() {
     }
 
     @Test
-    suspend fun `concurrent add`() {
+    suspend fun `concurrent add - integration`() {
         coroutineScope {
             val list = mutableListOf<String>()
             val synchronized = Synchronized(SyncMode.SAFE_EXECUTOR)
@@ -75,7 +75,7 @@ class SyncListTest : AnnotationSpec() {
     }
 
     @Test
-    fun `non concurrent add`() {
+    fun `non concurrent add - integration`() {
         val list = mutableListOf<String>()
         repeat(factor) {
             repeat(factor) {
