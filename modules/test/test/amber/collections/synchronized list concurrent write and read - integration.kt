@@ -17,7 +17,7 @@ import kotlinx.coroutines.runBlocking
 import java.util.concurrent.TimeUnit
 import amber.collections.SyncMutableList as SyncList
 
-class SyncMutableListTest : AnnotationSpec() {
+class `synchronized list concurrent write and read - integration` : AnnotationSpec() {
 
     private suspend fun testWith(it: Int, b: SyncMode) {
         val factor = it

@@ -12,10 +12,10 @@ import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.Dispatchers
 
-class LocalBdtpServerClientTest : AnnotationSpec() {
+class `local bdtp server client - integration` : AnnotationSpec() {
 
     @Test
-    suspend fun `simple method call with response`() {
+    suspend fun `simple method call with response - integration`() {
         var wasCalled = false
         var parameterWasSupplied = false
 
