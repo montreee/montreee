@@ -1,6 +1,7 @@
 package amber.regex
 
 class RegexContext internal constructor(var lastGroup: Int = 0) {
+
     internal val regexParts = StringBuilder()
 
     private fun addPart(part: String) {
