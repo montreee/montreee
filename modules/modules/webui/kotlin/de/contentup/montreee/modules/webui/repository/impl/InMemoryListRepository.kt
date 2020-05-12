@@ -20,8 +20,18 @@ class InMemoryListRepository(list: MutableList<Element> = mutableListOf()) : Rep
 
     override fun delete(path: Path): Element? = list.synchronized func@{
         val element = find(path)
-        if (!list.remove(element)) return@func null
-        list.removeIf { path.isParent(it.path) }
+        if (element == null || !list.remove(element)) return@func null
+        val childes = mutableListOf<Element>()
+
+        list.forEach {
+            if (element.path.trace.size >= it.path.trace.size) return@forEach
+            element.path.trace.forEachIndexed { i, e ->
+                if (e != it.path.trace[i]) return@forEach
+            }
+            childes.add(it)
+        }
+
+        list.removeAll(childes)
         return@func element
     }
 
