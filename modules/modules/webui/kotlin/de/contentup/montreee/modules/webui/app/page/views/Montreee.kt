@@ -16,11 +16,11 @@ import kotlinx.html.*
 suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: ApplicationContext) {
     val path = call.parameters.getAll("path")?.joinToString("/") ?: ""
 
-    val apiMethod = path.substringAfterLast("§")
+    val apiMethod = path.substringAfterLast("~")
     if (apiMethod != path) {
         when (apiMethod) {
             "delete" -> {
-                DeleteMontreeeElement(context)(path.substringBeforeLast("§"))
+                DeleteMontreeeElement(context)(path.substringBeforeLast("~"))
             }
         }
         call.respond(HttpStatusCode.OK)
