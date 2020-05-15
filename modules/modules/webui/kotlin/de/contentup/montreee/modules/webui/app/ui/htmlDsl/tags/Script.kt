@@ -1,4 +1,4 @@
-package de.contentup.montreee.modules.webui.app.htmlDsl.tags
+package de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags
 
 import kotlinx.html.*
 import kotlinx.html.SCRIPT as OriginalScriptTag

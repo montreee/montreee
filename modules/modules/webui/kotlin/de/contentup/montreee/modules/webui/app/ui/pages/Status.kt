@@ -1,9 +1,11 @@
-package de.contentup.montreee.modules.webui.app
+package de.contentup.montreee.modules.webui.app.ui.pages
 
-import de.contentup.montreee.modules.webui.app.htmlDsl.comment
-import de.contentup.montreee.modules.webui.app.htmlDsl.tags.html5Doctype
-import de.contentup.montreee.modules.webui.app.htmlDsl.tags.script
-import de.contentup.montreee.modules.webui.app.util.respondRawHtmlWithSectionComments
+import de.contentup.montreee.modules.webui.app.ApplicationContext
+import de.contentup.montreee.modules.webui.app.ui.StaticLinks
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.comment
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.html5Doctype
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.script
+import de.contentup.montreee.modules.webui.app.ui.util.respondRawHtmlWithSectionComments
 import io.ktor.application.Application
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
@@ -24,7 +26,6 @@ val httpStatusInformation
             HttpStatusInformation(100, "Continue"),
             HttpStatusInformation(101, "Switching Protocols"),
             HttpStatusInformation(102, "Processing"),
-
             HttpStatusInformation(200, "OK"),
             HttpStatusInformation(201, "Created"),
             HttpStatusInformation(202, "Accepted"),
@@ -35,7 +36,6 @@ val httpStatusInformation
             HttpStatusInformation(207, "Multi-Status"),
             HttpStatusInformation(208, "Already Reported"),
             HttpStatusInformation(226, "IM Used"),
-
             HttpStatusInformation(300, "Multiple Choices"),
             HttpStatusInformation(301, "Moved Permanently"),
             HttpStatusInformation(302, "Found"),
@@ -44,7 +44,6 @@ val httpStatusInformation
             HttpStatusInformation(305, "Use Proxy"),
             HttpStatusInformation(307, "Temporary Redirect"),
             HttpStatusInformation(308, "Permanent Redirect"),
-
             HttpStatusInformation(400, "Bad Request"),
             HttpStatusInformation(401, "Unauthorized"),
             HttpStatusInformation(402, "Payment Required"),
@@ -75,7 +74,6 @@ val httpStatusInformation
             HttpStatusInformation(444, "Connection Closed Without Response"),
             HttpStatusInformation(451, "Unavailable For Legal Reasons"),
             HttpStatusInformation(499, "Client Closed Request"),
-
             HttpStatusInformation(500, "Internal Server Error"),
             HttpStatusInformation(501, "Not Implemented"),
             HttpStatusInformation(502, "Bad Gateway"),
@@ -90,13 +88,17 @@ val httpStatusInformation
             HttpStatusInformation(599, "Network Connect Timeout Error")
     )
 
-fun Application.installStatusPages(context: ApplicationContext) {
+fun Application.installUIStatusPages() {
     install(StatusPages) {
         val handledStatusCodes = mutableListOf<HttpStatusCode>().apply {
             httpStatusInformation.forEach { add(HttpStatusCode.fromValue(it.code)) }
         }.toTypedArray()
         status(*handledStatusCodes) {
-            if (!it.isSuccess()) call.respondRedirect("/${it.value}")
+            if (!call.request.local.uri.startsWith("ui")) return@status
+            if (it.isSuccess()) return@status
+            if (it.toString().startsWith("3")) return@status
+
+            call.respondRedirect("/${it.value}")
         }
     }
 }

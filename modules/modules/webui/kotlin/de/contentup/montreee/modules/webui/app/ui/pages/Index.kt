@@ -1,12 +1,12 @@
-package de.contentup.montreee.modules.webui.app.page
+package de.contentup.montreee.modules.webui.app.ui.pages
 
 import de.contentup.montreee.modules.webui.app.ApplicationContext
-import de.contentup.montreee.modules.webui.app.StaticLinks
-import de.contentup.montreee.modules.webui.app.htmlDsl.comment
-import de.contentup.montreee.modules.webui.app.htmlDsl.tags.html5Doctype
-import de.contentup.montreee.modules.webui.app.htmlDsl.tags.script
-import de.contentup.montreee.modules.webui.app.htmlDsl.tags.use
-import de.contentup.montreee.modules.webui.app.util.respondRawHtmlWithSectionComments
+import de.contentup.montreee.modules.webui.app.ui.StaticLinks
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.comment
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.html5Doctype
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.script
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.use
+import de.contentup.montreee.modules.webui.app.ui.util.respondRawHtmlWithSectionComments
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.util.pipeline.PipelineContext

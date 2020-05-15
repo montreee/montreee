@@ -1,9 +1,9 @@
-package de.contentup.montreee.modules.webui.app.util
+package de.contentup.montreee.modules.webui.app.ui.util
 
 import de.contentup.montreee.Application
 import de.contentup.montreee.module.module
-import de.contentup.montreee.modules.webui.app.htmlDsl.SectionCommentTagConsumer
-import de.contentup.montreee.modules.webui.app.htmlDsl.sectionCommentsConsumer
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.SectionCommentTagConsumer
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.sectionCommentsConsumer
 import io.ktor.application.ApplicationCall
 import io.ktor.http.HttpStatusCode
 import io.ktor.response.respond

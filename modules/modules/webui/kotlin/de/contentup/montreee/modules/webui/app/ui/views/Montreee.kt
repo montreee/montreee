@@ -1,31 +1,17 @@
-package de.contentup.montreee.modules.webui.app.page.views
+package de.contentup.montreee.modules.webui.app.ui.views
 
 import de.contentup.montreee.modules.webui.app.ApplicationContext
-import de.contentup.montreee.modules.webui.app.htmlDsl.comment
-import de.contentup.montreee.modules.webui.app.util.respondRawHtmlWithSectionComments
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.comment
+import de.contentup.montreee.modules.webui.app.ui.util.respondRawHtmlWithSectionComments
 import de.contentup.montreee.modules.webui.repository.Element
 import de.contentup.montreee.modules.webui.repository.childes
-import de.contentup.montreee.modules.webui.usecases.DeleteMontreeeElement
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
-import io.ktor.http.HttpStatusCode
-import io.ktor.response.respond
 import io.ktor.util.pipeline.PipelineContext
 import kotlinx.html.*
 
 suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: ApplicationContext) {
     val path = call.parameters.getAll("path")?.joinToString("/") ?: ""
-
-    val apiMethod = path.substringAfterLast("~")
-    if (apiMethod != path) {
-        when (apiMethod) {
-            "delete" -> {
-                DeleteMontreeeElement(context)(path.substringBeforeLast("~"))
-            }
-        }
-        call.respond(HttpStatusCode.OK)
-        return
-    }
 
     val pathPrefix = "montreee"
     val content = context.repository.childes(path.ifBlank { "" })
@@ -92,8 +78,8 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: Applica
                                                             href = "$pathPrefix/${it.path}"
                                                             +it.path.element
                                                         }
-                                                        a {
-                                                            onClick = "montreeeCallMethod(\"delete\", \"$pathPrefix/${it.path}\", \"${(if (!path.isBlank()) "montreee/$path" else "montreee")}\")"
+                                                        button {
+                                                            onClick = "montreeeCallTreeEditDeleteMethod(\"${it.path}\", \"${(if (!path.isBlank()) "montreee/$path" else "montreee")}\")"
                                                             +"delete"
                                                         }
                                                     }
@@ -101,8 +87,8 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: Applica
                                                         a(classes = "disabled") {
                                                             +it.path.element
                                                         }
-                                                        a {
-                                                            onClick = "montreeeCallMethod(\"delete\", \"$pathPrefix/${it.path}\", \"${(if (!path.isBlank()) "montreee/$path" else "montreee")}\")"
+                                                        button {
+                                                            onClick = "montreeeCallTreeEditDeleteMethod(\"${it.path}\", \"${(if (!path.isBlank()) "montreee/$path" else "montreee")}\")"
                                                             +"delete"
                                                         }
                                                     }

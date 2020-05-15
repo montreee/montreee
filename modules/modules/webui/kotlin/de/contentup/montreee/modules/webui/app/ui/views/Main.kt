@@ -1,11 +1,11 @@
-package de.contentup.montreee.modules.webui.app.page.views
+package de.contentup.montreee.modules.webui.app.ui.views
 
 import de.contentup.montreee.modules.webui.app.ApplicationContext
-import de.contentup.montreee.modules.webui.app.StaticLinks
-import de.contentup.montreee.modules.webui.app.htmlDsl.comment
-import de.contentup.montreee.modules.webui.app.htmlDsl.tags.script
-import de.contentup.montreee.modules.webui.app.htmlDsl.tags.styleLink
-import de.contentup.montreee.modules.webui.app.util.respondRawHtmlWithSectionComments
+import de.contentup.montreee.modules.webui.app.ui.StaticLinks
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.comment
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.script
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.styleLink
+import de.contentup.montreee.modules.webui.app.ui.util.respondRawHtmlWithSectionComments
 import de.contentup.montreee.modules.webui.app.webuiDataFolder
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
@@ -36,7 +36,7 @@ suspend fun PipelineContext<Unit, ApplicationCall>.mainView(context: Application
                 div(classes = "montreee-body fade-in") {
                     main(classes = "montreee-main") {
                         div(classes = "container-fluid") {
-                            script(src = "views/main.js")
+                            script(src = "ui/views/main.js")
                             consumer.onTagContentUnsafe {
                                 +webuiDataFolder.resolve("views/main.html").readText()
                             }

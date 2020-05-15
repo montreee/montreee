@@ -1,4 +1,4 @@
-package de.contentup.montreee.modules.webui.app.util
+package de.contentup.montreee.modules.webui.app.ui.util
 
 import io.ktor.application.ApplicationCall
 import io.ktor.http.ContentType
