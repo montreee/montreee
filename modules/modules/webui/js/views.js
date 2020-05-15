@@ -1,14 +1,18 @@
 let montreeeAsyncLoad = new coreui.AsyncLoad(document.getElementById('ui-view'), {
     defaultPage: "main",
-    errorPage: "status/404",
-    subpagesDirectory: "views/"
+    errorPage: "ui/404",
+    subpagesDirectory: "ui/views/"
 });
 
-function montreeeCallMethod(method, url, onReadyViewUrl) {
+function montreeeCallTreeEditDeleteMethod(path, onReadyViewUrl) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', "views/" + url + "~" + method);
+    xhr.open('DELETE', "api/tree/edit?path=" + path);
     xhr.onload = function (result) {
-        montreeeAsyncLoad._loadPage(onReadyViewUrl)
+        loadView(onReadyViewUrl)
     };
     xhr.send();
+}
+
+async function loadView(url) {
+    montreeeAsyncLoad._loadPage(url)
 }
