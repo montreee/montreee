@@ -1,10 +1,17 @@
 package de.contentup.montreee.modules.webui.app
 
-import io.ktor.routing.Routing
+import de.contentup.montreee.modules.webui.app.api.api
+import de.contentup.montreee.modules.webui.app.ui.ui
+import io.ktor.application.call
+import io.ktor.response.respondRedirect
+import io.ktor.routing.Route
 import io.ktor.routing.get
+import io.ktor.routing.route
 
-fun Routing.routes(context: ApplicationContext) {
-    pages(context)
-    status(context)
-    get("{...}") { fallback(context) }
+fun Route.routes(context: ApplicationContext) {
+    route("/api") { api(context) }
+    route("/ui") { ui(context) }
+    get {
+        call.respondRedirect("/ui", true)
+    }
 }
