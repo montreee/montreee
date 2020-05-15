@@ -1,4 +1,4 @@
-package de.contentup.montreee.modules.webui.app.htmlDsl
+package de.contentup.montreee.modules.webui.app.ui.htmlDsl
 
 import kotlinx.html.Tag
 import kotlinx.html.TagConsumer
