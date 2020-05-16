@@ -17,6 +17,7 @@ object StaticLinks {
         val Before = "ui/js/before.js".useMinIfDevelopmentIsDisabled()
         val Sidebar = "ui/js/sidebar.js".useMinIfDevelopmentIsDisabled()
         val Views = "ui/js/views.js".useMinIfDevelopmentIsDisabled()
+        val ApiButtons = "ui/js/api-buttons.js".useMinIfDevelopmentIsDisabled()
     }
 
     object CSS {

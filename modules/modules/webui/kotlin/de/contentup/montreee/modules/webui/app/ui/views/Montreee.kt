@@ -1,7 +1,9 @@
 package de.contentup.montreee.modules.webui.app.ui.views
 
 import de.contentup.montreee.modules.webui.app.ApplicationContext
+import de.contentup.montreee.modules.webui.app.ui.StaticLinks
 import de.contentup.montreee.modules.webui.app.ui.htmlDsl.comment
+import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.script
 import de.contentup.montreee.modules.webui.app.ui.util.respondRawHtmlWithSectionComments
 import de.contentup.montreee.modules.webui.repository.Element
 import de.contentup.montreee.modules.webui.repository.childes
@@ -13,7 +15,6 @@ import kotlinx.html.*
 suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: ApplicationContext) {
     val path = call.parameters.getAll("path")?.joinToString("/") ?: ""
 
-    val pathPrefix = "montreee"
     val content = context.repository.childes(path.ifBlank { "" })
 
     call.respondRawHtmlWithSectionComments {
@@ -26,7 +27,7 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: Applica
                 }
 
                 comment("scripts") {
-
+                    script(src = StaticLinks.JS.ApiButtons)
                 }
 
             }
@@ -71,35 +72,48 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: Applica
                                 div(classes = "card") {
                                     div(classes = "card-body") {
                                         content.forEach {
-                                            div(classes = "row px-4 py-1") {
-                                                when (it) {
-                                                    is Element.Folder -> {
-                                                        a(classes = "montreee-xhr-link") {
-                                                            href = "$pathPrefix/${it.path}"
-                                                            +it.path.element
-                                                        }
-                                                        button {
-                                                            onClick = "montreeeCallTreeEditDeleteMethod(\"${it.path}\", \"${(if (!path.isBlank()) "montreee/$path" else "montreee")}\")"
-                                                            +"delete"
-                                                        }
-                                                    }
-                                                    else              -> {
-                                                        a(classes = "disabled") {
-                                                            +it.path.element
-                                                        }
-                                                        button {
-                                                            onClick = "montreeeCallTreeEditDeleteMethod(\"${it.path}\", \"${(if (!path.isBlank()) "montreee/$path" else "montreee")}\")"
-                                                            +"delete"
-                                                        }
-                                                    }
-                                                }
-                                            }
+                                            element(it, path)
                                         }
                                     }
                                 }
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+private fun DIV.element(
+        it: Element,
+        path: String
+) {
+    div(classes = "row px-4 py-1") {
+        when (it) {
+            is Element.Folder -> {
+                a(classes = "montreee-xhr-link") {
+                    href = "montreee/${it.path}"
+                    +it.path.element
+                }
+                button(classes = "montreee-api-button") {
+                    attributes["data-method"] = "DELETE"
+                    attributes["data-url"] = "api/tree/edit"
+                    attributes["data-load-after-view-url"] = if (!path.isBlank()) "montreee/$path" else "montreee"
+                    attributes["data-parameter-path"] = "${it.path}"
+                    +"delete"
+                }
+            }
+            else              -> {
+                a(classes = "disabled") {
+                    +it.path.element
+                }
+                button(classes = "montreee-api-button") {
+                    attributes["data-method"] = "DELETE"
+                    attributes["data-url"] = "api/tree/edit"
+                    attributes["data-load-after-view-url"] = if (!path.isBlank()) "montreee/$path" else "montreee"
+                    attributes["data-parameter-path"] = "${it.path}"
+                    +"delete"
                 }
             }
         }
