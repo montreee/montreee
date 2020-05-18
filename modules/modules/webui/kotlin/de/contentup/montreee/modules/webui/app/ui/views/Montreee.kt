@@ -6,7 +6,7 @@ import de.contentup.montreee.modules.webui.app.ui.htmlDsl.comment
 import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.script
 import de.contentup.montreee.modules.webui.app.ui.util.respondRawHtmlWithSectionComments
 import de.contentup.montreee.modules.webui.repository.Element
-import de.contentup.montreee.modules.webui.repository.childes
+import de.contentup.montreee.modules.webui.repository.Path
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.util.pipeline.PipelineContext
@@ -15,7 +15,7 @@ import kotlinx.html.*
 suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: ApplicationContext) {
     val path = call.parameters.getAll("path")?.joinToString("/") ?: ""
 
-    val content = context.repository.childes(path.ifBlank { "" })
+    val content = context.repository.childes(Path(path.ifBlank { "" }), 1)
 
     call.respondRawHtmlWithSectionComments {
         comment("view") {
@@ -94,11 +94,11 @@ private fun DIV.element(
             is Element.Folder -> {
                 a(classes = "montreee-xhr-link") {
                     href = "montreee/${it.path}"
-                    +it.path.element
+                    +(it.path.element ?: "")
                 }
                 button(classes = "montreee-api-button") {
                     attributes["data-method"] = "DELETE"
-                    attributes["data-url"] = "api/tree/edit"
+                    attributes["data-url"] = "api/tree/edit/delete"
                     attributes["data-load-after-view-url"] = if (!path.isBlank()) "montreee/$path" else "montreee"
                     attributes["data-parameter-path"] = "${it.path}"
                     +"delete"
@@ -106,11 +106,11 @@ private fun DIV.element(
             }
             else              -> {
                 a(classes = "disabled") {
-                    +it.path.element
+                    +(it.path.element ?: "")
                 }
                 button(classes = "montreee-api-button") {
                     attributes["data-method"] = "DELETE"
-                    attributes["data-url"] = "api/tree/edit"
+                    attributes["data-url"] = "api/tree/edit/delete"
                     attributes["data-load-after-view-url"] = if (!path.isBlank()) "montreee/$path" else "montreee"
                     attributes["data-parameter-path"] = "${it.path}"
                     +"delete"

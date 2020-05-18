@@ -7,11 +7,11 @@ class Path(val value: String) {
     constructor(parents: List<String>, element: String) : this(*parents.toTypedArray(), element)
     constructor(vararg parent: String, element: String) : this(parent.asList(), element)
 
-    val trace = value.split("/")
-    val element = trace.last()
-    val parents = trace.filter { it !== element }
+    val trace = if (value.isNotBlank()) value.split("/") else emptyList()
+    val element = if (trace.isNotEmpty()) trace.last() else null
+    val parents = if (element != null) trace.filter { it !== element } else emptyList()
 
-    val parent get() = Path(parents)
+    val parent get() = if (parents.isNotEmpty()) Path(parents) else null
 
     fun isChild(parent: Path) = parent.isParent(this)
     fun isParent(child: Path): Boolean {
