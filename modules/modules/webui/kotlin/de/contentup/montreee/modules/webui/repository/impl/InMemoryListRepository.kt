@@ -9,37 +9,58 @@ class InMemoryListRepository(list: MutableList<Element> = mutableListOf()) : Rep
 
     private val list = list.sync()
 
-    override fun find(path: Path): Element? = list.synchronized func@{
-        if (path.value.isBlank()) return@func Element.Folder(Path(""))
-        list.find { it.path == path }
+    override fun find(path: Path): Element? = list.synchronized { internalFind(path) }
+    override fun childes(path: Path, depth: Int): List<Element> = list.synchronized { internalChildes(path, depth) }
+    override fun delete(path: Path): Element? = list.synchronized { internalDelete(path) }
+    override fun insert(element: Element): Path? = list.synchronized { internalInsert(element) }
+    override fun move(from: Path, to: Path): Element? = list.synchronized { internalMove(from, to) }
+
+    private fun internalFind(path: Path): Element? {
+        if (path.value.isBlank()) return Element.Folder(Path(""))
+        return list.find { it.path == path }
     }
 
-    override fun childes(path: Path): List<Element> = list.synchronized {
-        list.filter { it.path.parent == path }
-    }
-
-    override fun delete(path: Path): Element? = list.synchronized func@{
-        val element = find(path)
-        if (element == null || !list.remove(element)) return@func null
+    private fun internalChildes(path: Path, depth: Int = 0): List<Element> {
+        val element = internalFind(path) ?: return emptyList()
         val childes = mutableListOf<Element>()
-
         list.forEach {
             if (element.path.trace.size >= it.path.trace.size) return@forEach
+            if (depth > 0 && it.path.trace.size - element.path.trace.size > depth) return@forEach
             element.path.trace.forEachIndexed { i, e ->
                 if (e != it.path.trace[i]) return@forEach
             }
             childes.add(it)
         }
+        return childes
+    }
 
+    private fun internalDelete(path: Path): Element? {
+        val element = internalFind(path) ?: return null
+        val childes = internalChildes(path)
+        if (!list.remove(element)) return null
         list.removeAll(childes)
-        return@func element
+        return element
     }
 
-    override fun insert(element: Element): Path? = list.synchronized func@{
-        if (find(element.path) != null) return@func null
-        find(element.path.parent) ?: return@func null
+    private fun internalInsert(element: Element): Path? {
+        if (internalFind(element.path) != null) return null
+        internalFind(element.path.parent) ?: return null
         list.add(element)
-        return@func element.path
+        return element.path
     }
 
+    private fun internalMove(from: Path, to: Path): Element? {
+        fun moveElement(from: Path, to: Path) {
+            val element = internalFind(from) ?: return
+            internalDelete(from)
+            internalInsert(element.apply { path = to })
+        }
+
+        val element = internalFind(from)
+        if (element == null || internalFind(to) != null) return null
+        listOf(element, *childes(from).toTypedArray()).forEach {
+            moveElement(it.path, Path(to.trace + it.path.trace.subList(to.trace.lastIndex, it.path.trace.lastIndex)))
+        }
+        return internalFind(to)
+    }
 }
