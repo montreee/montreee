@@ -66,13 +66,66 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: Applica
 
             comment("content") {
                 div(classes = "montreee-body ${if (path.isBlank()) "fade-in" else ""}") {
-                    main(classes = "montreee-main") {
-                        div(classes = "container-fluid") {
-                            if (content.isNotEmpty()) {
-                                div(classes = "card") {
-                                    div(classes = "card-body") {
-                                        content.forEach {
-                                            element(it, path)
+
+                    //todo remove
+                    button(classes = "btn btn-primary") {
+                        type = ButtonType.button
+                        attributes["data-toggle"] = "modal"
+                        attributes["data-target"] = "#dialog-move-element"
+                        +"""Launch demo modal"""
+                    }
+
+
+                    comment("dialogs") {
+                        comment("move element dialog") {
+                            div(classes = "modal fade") {
+                                id = "dialog-move-element"
+                                role = "dialog"
+                                attributes["tabindex"] = "-1"
+                                attributes["aria-labelledby"] = "move element dialog"
+                                attributes["aria-hidden"] = "true"
+                                div(classes = "modal-dialog") {
+                                    role = "document"
+                                    div(classes = "modal-content") {
+                                        div(classes = "modal-header") {
+                                            h5(classes = "modal-title") {
+                                                +"Move"
+                                            }
+                                            button(classes = "close") {
+                                                type = ButtonType.button
+                                                attributes["data-dismiss"] = "modal"
+                                                attributes["aria-label"] = "Close"
+                                                i(classes = "fa fa-times")
+                                            }
+                                        }
+                                        div(classes = "modal-body") {
+                                        }
+                                        div(classes = "modal-footer") {
+                                            button(classes = "btn btn-secondary") {
+                                                type = ButtonType.button
+                                                attributes["data-dismiss"] = "modal"
+                                                +"Close"
+                                            }
+                                            button(classes = "btn btn-primary") {
+                                                type = ButtonType.button
+                                                +"Save"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    comment("main") {
+                        main(classes = "montreee-main") {
+                            div(classes = "container-fluid") {
+                                if (content.isNotEmpty()) {
+                                    div(classes = "card") {
+                                        div(classes = "card-body") {
+                                            content.forEach {
+                                                element(it, path)
+                                            }
                                         }
                                     }
                                 }

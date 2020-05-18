@@ -9,6 +9,11 @@ import io.ktor.routing.get
 import io.ktor.routing.route
 
 fun Route.routes(context: ApplicationContext) {
+    //todo fix
+    get("/scss/{path...}") {
+        call.respondRedirect("/ui/scss/${call.parameters.getAll("path")?.joinToString("/")}", true)
+    }
+
     route("/api") { api(context) }
     route("/ui") { ui(context) }
     get {

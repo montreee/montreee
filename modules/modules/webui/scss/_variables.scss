@@ -1,6 +1,6 @@
 $prefix: montreee- !default;
 
-$montreee-color-base: #777;
+$montreee-color-base: #ddd;
 $montreee-color-1: lighten($montreee-color-base, 3%);
 $montreee-color-2: lighten($montreee-color-1, 3%);
 $montreee-color-3: lighten($montreee-color-2, 3%);
@@ -53,3 +53,6 @@ $sidebar-dark-theme-nav-link-hover-bg: $montreee-primary-color-base;
 $card-dark-bg: $montreee-bg-color-4;
 $card-dark-cap-bg: $montreee-bg-color-4;
 $link-dark-theme-color: $montreee-primary-color-base;
+$close-color: $montreee-color-10;
+$close-text-shadow: 0 0 0 #000;
+
