@@ -66,23 +66,12 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: Applica
 
             comment("content") {
                 div(classes = "montreee-body ${if (path.isBlank()) "fade-in" else ""}") {
-
-                    //todo remove
-                    button(classes = "btn btn-primary") {
-                        type = ButtonType.button
-                        attributes["data-toggle"] = "modal"
-                        attributes["data-target"] = "#dialog-move-element"
-                        +"""Launch demo modal"""
-                    }
-
-
                     comment("dialogs") {
                         comment("move element dialog") {
                             div(classes = "modal fade") {
                                 id = "dialog-move-element"
                                 role = "dialog"
                                 attributes["tabindex"] = "-1"
-                                attributes["aria-labelledby"] = "move element dialog"
                                 attributes["aria-hidden"] = "true"
                                 div(classes = "modal-dialog") {
                                     role = "document"
@@ -149,24 +138,36 @@ private fun DIV.element(
                     href = "montreee/${it.path}"
                     +(it.path.element ?: "")
                 }
-                button(classes = "montreee-api-button") {
+                button(classes = "montreee-api-button btn btn-secondary") {
                     attributes["data-method"] = "DELETE"
                     attributes["data-url"] = "api/tree/edit/delete"
                     attributes["data-load-after-view-url"] = if (!path.isBlank()) "montreee/$path" else "montreee"
                     attributes["data-parameter-path"] = "${it.path}"
                     +"delete"
+                }
+                button(classes = "btn btn-primary") {
+                    type = ButtonType.button
+                    attributes["data-toggle"] = "modal"
+                    attributes["data-target"] = "#dialog-move-element"
+                    +"move"
                 }
             }
             else              -> {
                 a(classes = "disabled") {
                     +(it.path.element ?: "")
                 }
-                button(classes = "montreee-api-button") {
+                button(classes = "montreee-api-button btn btn-secondary") {
                     attributes["data-method"] = "DELETE"
                     attributes["data-url"] = "api/tree/edit/delete"
                     attributes["data-load-after-view-url"] = if (!path.isBlank()) "montreee/$path" else "montreee"
                     attributes["data-parameter-path"] = "${it.path}"
                     +"delete"
+                }
+                button(classes = "btn btn-primary") {
+                    type = ButtonType.button
+                    attributes["data-toggle"] = "modal"
+                    attributes["data-target"] = "#dialog-move-element"
+                    +"move"
                 }
             }
         }
