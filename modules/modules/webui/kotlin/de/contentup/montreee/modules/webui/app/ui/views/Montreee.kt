@@ -28,6 +28,7 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: Applica
 
                 comment("scripts") {
                     script(src = StaticLinks.JS.ApiButtons)
+                    script(src = StaticLinks.JS.DialogMoveElements)
                 }
 
             }
@@ -88,6 +89,12 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: Applica
                                             }
                                         }
                                         div(classes = "modal-body") {
+                                            p {
+                                                id = "dialog-move-element-current-path"
+                                            }
+                                            input {
+                                                id = "dialog-move-element-future-path"
+                                            }
                                         }
                                         div(classes = "modal-footer") {
                                             button(classes = "btn btn-secondary") {
@@ -149,6 +156,7 @@ private fun DIV.element(
                     type = ButtonType.button
                     attributes["data-toggle"] = "modal"
                     attributes["data-target"] = "#dialog-move-element"
+                    attributes["data-current-path"] = "${it.path}"
                     +"move"
                 }
             }
@@ -167,6 +175,7 @@ private fun DIV.element(
                     type = ButtonType.button
                     attributes["data-toggle"] = "modal"
                     attributes["data-target"] = "#dialog-move-element"
+                    onClick = "dialogMoveElement(\"${it.path}\")"
                     +"move"
                 }
             }

@@ -18,6 +18,7 @@ object StaticLinks {
         val Sidebar = "ui/js/sidebar.js".useMinIfDevelopmentIsDisabled()
         val Views = "ui/js/views.js".useMinIfDevelopmentIsDisabled()
         val ApiButtons = "ui/js/api-buttons.js".useMinIfDevelopmentIsDisabled()
+        val DialogMoveElements = "ui/js/dialog-move-element.js".useMinIfDevelopmentIsDisabled()
     }
 
     object CSS {
