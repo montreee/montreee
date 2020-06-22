@@ -102,9 +102,13 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: Applica
                                                 attributes["data-dismiss"] = "modal"
                                                 +"Close"
                                             }
-                                            button(classes = "btn btn-primary") {
+                                            button(classes = "montreee-api-button btn btn-primary") {
+                                                id = "dialog-move-element-move-button"
                                                 type = ButtonType.button
-                                                +"Save"
+                                                attributes["data-method"] = "PUT"
+                                                attributes["data-url"] = "api/tree/edit/move"
+                                                attributes["data-load-after-view-url"] = if (!path.isBlank()) "montreee/$path" else "montreee"
+                                                +"Move"
                                             }
                                         }
                                     }
@@ -156,7 +160,7 @@ private fun DIV.element(
                     type = ButtonType.button
                     attributes["data-toggle"] = "modal"
                     attributes["data-target"] = "#dialog-move-element"
-                    attributes["data-current-path"] = "${it.path}"
+                    onClick = "dialogMoveElement(\"${it.path}\")"
                     +"move"
                 }
             }
