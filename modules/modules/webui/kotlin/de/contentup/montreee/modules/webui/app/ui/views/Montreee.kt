@@ -7,6 +7,7 @@ import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.script
 import de.contentup.montreee.modules.webui.app.ui.util.respondRawHtmlWithSectionComments
 import de.contentup.montreee.modules.webui.repository.Element
 import de.contentup.montreee.modules.webui.repository.Path
+import de.contentup.montreee.modules.webui.repository.types.Folder
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.util.pipeline.PipelineContext
@@ -143,8 +144,8 @@ private fun DIV.element(
         path: String
 ) {
     div(classes = "row px-4 py-1") {
-        when (it) {
-            is Element.Folder -> {
+        when (it.type) {
+            is Folder         -> {
                 a(classes = "montreee-xhr-link") {
                     href = "montreee/${it.path}"
                     +(it.path.element ?: "")

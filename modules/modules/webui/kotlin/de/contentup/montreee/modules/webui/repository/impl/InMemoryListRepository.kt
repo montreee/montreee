@@ -5,6 +5,7 @@ import amber.collections.sync
 import de.contentup.montreee.modules.webui.repository.Element
 import de.contentup.montreee.modules.webui.repository.Path
 import de.contentup.montreee.modules.webui.repository.Repository
+import de.contentup.montreee.modules.webui.repository.types.Folder
 
 class InMemoryListRepository(list: MutableList<Element> = mutableListOf()) : Repository {
 
@@ -17,7 +18,7 @@ class InMemoryListRepository(list: MutableList<Element> = mutableListOf()) : Rep
     override fun move(from: Path, to: Path): Element? = list.synchronized { internalMove(from, to) }
 
     private fun internalFind(path: Path): Element? {
-        if (path.value.isBlank()) return Element.Folder(Path(""))
+        if (path.value.isBlank()) return Element(Path(""), Folder())
         return list.find { it.path == path }
     }
 
@@ -58,7 +59,8 @@ class InMemoryListRepository(list: MutableList<Element> = mutableListOf()) : Rep
     private fun internalMove(from: Path, to: Path): Element? {
         fun moveElement(from: Path, to: Path) {
             val element = internalFind(from) ?: return
-            element.apply { path = to }
+            list.remove(element)
+            internalInsert(Element(to, element.type))
         }
 
         val element = internalFind(from)

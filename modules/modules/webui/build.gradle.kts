@@ -1,6 +1,6 @@
 plugins {
     id("com.github.salomonbrys.gradle.sass") version "1.2.0"
-    id("org.padler.gradle.minify") version "1.5.0"
+    id("org.padler.gradle.minify") version "1.6.0"
 }
 
 dependencies {
@@ -65,7 +65,6 @@ task("buildWeb") {
     dependsOn("copyMinSrc")
     dependsOn("minify")
     dependsOn("copyMinDst")
-    dependsOn("addSourceMappingURLToMinJsAndCssFiles")
 }
 
 task("copyWebSrc") {
@@ -139,35 +138,4 @@ task("copyMinCssDst", Copy::class) {
     dependsOn("minify")
     from(minification.cssDstDir)
     into("$buildDir/css")
-}
-
-//TODO should happen in minify plugin
-task("addSourceMappingURLToMinJsAndCssFiles") {
-    group = "build"
-    dependsOn("addSourceMappingURLToMinJsFiles")
-    dependsOn("addSourceMappingURLToMinCssFiles")
-}
-
-//TODO should happen in minify plugin
-task("addSourceMappingURLToMinJsFiles") {
-    group = "build"
-    dependsOn("copyMinDst")
-    doFirst {
-        File("$buildDir/js").walkTopDown().forEach {
-            if (!it.isFile || !it.name.endsWith(".min.js")) return@forEach
-            it.writeText("${it.readText()}\n//# sourceMappingURL=${it.name}.map\n")
-        }
-    }
-}
-
-//TODO should happen in minify plugin
-task("addSourceMappingURLToMinCssFiles") {
-    group = "build"
-    dependsOn("copyMinDst")
-    doFirst {
-        File("$buildDir/css").walkTopDown().forEach {
-            if (!it.isFile || !it.name.endsWith(".min.css")) return@forEach
-            it.writeText("${it.readText()}\n/*# sourceMappingURL=${it.name}.map */\n")
-        }
-    }
 }
