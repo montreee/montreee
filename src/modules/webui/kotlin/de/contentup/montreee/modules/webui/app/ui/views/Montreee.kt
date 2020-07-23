@@ -8,9 +8,8 @@ import de.contentup.montreee.modules.webui.app.ui.util.respondRawHtmlWithSection
 import de.contentup.montreee.modules.webui.repository.Element
 import de.contentup.montreee.modules.webui.repository.Path
 import de.contentup.montreee.modules.webui.repository.types.Folder
-import io.ktor.application.ApplicationCall
-import io.ktor.application.call
-import io.ktor.util.pipeline.PipelineContext
+import io.ktor.application.*
+import io.ktor.util.pipeline.*
 import kotlinx.html.*
 
 suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: ApplicationContext) {

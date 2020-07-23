@@ -51,7 +51,7 @@ class InMemoryListRepository(list: MutableList<Element> = mutableListOf()) : Rep
 
     private fun internalInsert(element: Element): Path? {
         if (internalFind(element.path) != null) return null
-        if (element.path.parent != null) internalFind(element.path.parent!!) ?: return null
+        internalFind(element.path.parent) ?: return null
         list.add(element)
         return element.path
     }
@@ -65,10 +65,11 @@ class InMemoryListRepository(list: MutableList<Element> = mutableListOf()) : Rep
 
         val element = internalFind(from)
         if (element == null || internalFind(to) != null) return null
-        childes(from).forEach {
+        val childes = childes(from)
+        moveElement(from, to)
+        childes.forEach {
             moveElement(it.path, Path(to.trace + it.path.trace.subList(from.trace.size, it.path.trace.size)))
         }
-        moveElement(from, to)
         return internalFind(to)
     }
 }
