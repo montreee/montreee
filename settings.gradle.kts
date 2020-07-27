@@ -1,31 +1,31 @@
 rootProject.name = "montreee"
 
 fun Settings.includeFrom(dir: String, name: String) {
-    include("$name")
+    include(name)
     val moculeDir = "./$dir/${(name.removePrefix(":")).replace(":", "/")}"
-    project("$name").projectDir = File(moculeDir)
+    project(name).projectDir = File(moculeDir)
 }
 
-fun Settings.includeFromModuleDir(name: String) = includeFrom("modules", name)
+fun Settings.includeFromSrcDir(name: String) = includeFrom("src", name)
 fun Settings.includeModule(name: String) = includeFrom(".", name)
 
-includeFromModuleDir(":amber")
-includeFromModuleDir(":util")
-includeFromModuleDir(":api")
-includeFromModuleDir(":api:internal")
-includeFromModuleDir(":api:public")
-includeFromModuleDir(":api:private")
-includeFromModuleDir(":application")
-includeFromModuleDir(":module")
-includeFromModuleDir(":modules")
-includeFromModuleDir(":modules:standalone")
-includeFromModuleDir(":modules:core")
-includeFromModuleDir(":modules:api")
-includeFromModuleDir(":modules:render")
-includeFromModuleDir(":modules:database")
-includeFromModuleDir(":modules:webui")
-includeFromModuleDir(":cli")
-includeFromModuleDir(":test")
+includeFromSrcDir(":amber")
+includeFromSrcDir(":util")
+includeFromSrcDir(":api")
+includeFromSrcDir(":api:internal")
+includeFromSrcDir(":api:public")
+includeFromSrcDir(":api:private")
+includeFromSrcDir(":application")
+includeFromSrcDir(":module")
+includeFromSrcDir(":modules")
+includeFromSrcDir(":modules:standalone")
+includeFromSrcDir(":modules:core")
+includeFromSrcDir(":modules:api")
+includeFromSrcDir(":modules:render")
+includeFromSrcDir(":modules:database")
+includeFromSrcDir(":modules:webui")
+includeFromSrcDir(":cli")
+includeFromSrcDir(":test")
 
 
 //todo remove

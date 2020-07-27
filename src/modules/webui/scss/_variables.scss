@@ -1,0 +1,58 @@
+$prefix: montreee- !default;
+
+$montreee-color-base: #ddd;
+$montreee-color-1: lighten($montreee-color-base, 3%);
+$montreee-color-2: lighten($montreee-color-1, 3%);
+$montreee-color-3: lighten($montreee-color-2, 3%);
+$montreee-color-4: lighten($montreee-color-3, 3%);
+$montreee-color-5: lighten($montreee-color-4, 3%);
+$montreee-color-6: lighten($montreee-color-5, 3%);
+$montreee-color-7: lighten($montreee-color-6, 3%);
+$montreee-color-8: lighten($montreee-color-7, 3%);
+$montreee-color-9: lighten($montreee-color-8, 3%);
+$montreee-color-10: lighten($montreee-color-9, 3%);
+
+$montreee-bg-color-base: #000;
+$montreee-bg-color-1: lighten($montreee-bg-color-base, 3%);
+$montreee-bg-color-2: lighten($montreee-bg-color-1, 3%);
+$montreee-bg-color-3: lighten($montreee-bg-color-2, 3%);
+$montreee-bg-color-4: lighten($montreee-bg-color-3, 3%);
+$montreee-bg-color-5: lighten($montreee-bg-color-4, 3%);
+$montreee-bg-color-6: lighten($montreee-bg-color-5, 3%);
+$montreee-bg-color-7: lighten($montreee-bg-color-6, 3%);
+$montreee-bg-color-8: lighten($montreee-bg-color-7, 3%);
+$montreee-bg-color-9: lighten($montreee-bg-color-8, 3%);
+$montreee-bg-color-10: lighten($montreee-bg-color-9, 3%);
+
+$montreee-primary-color-base: #0061c6;
+$montreee-primary-color-1: lighten($montreee-primary-color-base, 3%);
+$montreee-primary-color-2: lighten($montreee-primary-color-1, 3%);
+$montreee-primary-color-3: lighten($montreee-primary-color-2, 3%);
+$montreee-primary-color-4: lighten($montreee-primary-color-3, 3%);
+$montreee-primary-color-5: lighten($montreee-primary-color-4, 3%);
+$montreee-primary-color-6: lighten($montreee-primary-color-5, 3%);
+$montreee-primary-color-7: lighten($montreee-primary-color-6, 3%);
+$montreee-primary-color-8: lighten($montreee-primary-color-7, 3%);
+$montreee-primary-color-9: lighten($montreee-primary-color-8, 3%);
+$montreee-primary-color-10: lighten($montreee-primary-color-9, 3%);
+
+
+// custom none themen colors
+$form-text-input-bg-color: $montreee-bg-color-5;
+$form-text-input-border-color: $montreee-bg-color-5;
+
+
+// core ui overrides
+$primary: $montreee-primary-color-base;
+$body-dark-theme-bg: $montreee-bg-color-2;
+$header-dark-theme-bg: $montreee-bg-color-4;
+$sidebar-dark-theme-bg: $montreee-bg-color-4;
+$sidebar-dark-theme-brand-bg: $montreee-bg-color-4;
+$sidebar-dark-theme-nav-link-active-bg: $montreee-bg-color-5;
+$sidebar-dark-theme-nav-link-hover-bg: $montreee-primary-color-base;
+$card-dark-bg: $montreee-bg-color-4;
+$card-dark-cap-bg: $montreee-bg-color-4;
+$link-dark-theme-color: $montreee-primary-color-base;
+$close-color: $montreee-color-10;
+$close-text-shadow: 0 0 0 #000;
+
