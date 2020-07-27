@@ -67,55 +67,8 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: Applica
             }
 
             comment("content") {
-                div(classes = "montreee-body ${if (path.isBlank()) "fade-in" else ""}") {
+                div(classes = "montreee-body") {
                     comment("dialogs") {
-                        comment("move element dialog") {
-                            div(classes = "modal fade") {
-                                id = "dialog-move-element"
-                                role = "dialog"
-                                attributes["tabindex"] = "-1"
-                                attributes["aria-hidden"] = "true"
-                                div(classes = "modal-dialog") {
-                                    role = "document"
-                                    div(classes = "modal-content") {
-                                        div(classes = "modal-header") {
-                                            h5(classes = "modal-title") {
-                                                +"Move"
-                                            }
-                                            button(classes = "close") {
-                                                type = ButtonType.button
-                                                attributes["data-dismiss"] = "modal"
-                                                attributes["aria-label"] = "Close"
-                                                i(classes = "fa fa-times")
-                                            }
-                                        }
-                                        div(classes = "modal-body") {
-                                            p {
-                                                id = "dialog-move-element-current-path"
-                                            }
-                                            input {
-                                                id = "dialog-move-element-future-path"
-                                            }
-                                        }
-                                        div(classes = "modal-footer") {
-                                            button(classes = "btn btn-secondary") {
-                                                type = ButtonType.button
-                                                attributes["data-dismiss"] = "modal"
-                                                +"Close"
-                                            }
-                                            button(classes = "montreee-api-button btn btn-primary") {
-                                                id = "dialog-move-element-move-button"
-                                                type = ButtonType.button
-                                                attributes["data-method"] = "PUT"
-                                                attributes["data-url"] = "api/tree/edit/move"
-                                                attributes["data-load-after-view-url"] = if (!path.isBlank()) "montreee/$path" else "montreee"
-                                                +"Move"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
                         comment("rename element dialog") {
                             div(classes = "modal fade") {
                                 id = "dialog-rename-element"
@@ -153,10 +106,59 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: Applica
                                             button(classes = "montreee-api-button btn btn-primary") {
                                                 id = "dialog-rename-element-rename-button"
                                                 type = ButtonType.button
+                                                attributes["data-dismiss"] = "modal"
                                                 attributes["data-method"] = "PUT"
                                                 attributes["data-url"] = "api/tree/edit/rename"
                                                 attributes["data-load-after-view-url"] = if (!path.isBlank()) "montreee/$path" else "montreee"
                                                 +"Rename"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        comment("move element dialog") {
+                            div(classes = "modal fade") {
+                                id = "dialog-move-element"
+                                role = "dialog"
+                                attributes["tabindex"] = "-1"
+                                attributes["aria-hidden"] = "true"
+                                div(classes = "modal-dialog") {
+                                    role = "document"
+                                    div(classes = "modal-content") {
+                                        div(classes = "modal-header") {
+                                            h5(classes = "modal-title") {
+                                                +"Move"
+                                            }
+                                            button(classes = "close") {
+                                                type = ButtonType.button
+                                                attributes["data-dismiss"] = "modal"
+                                                attributes["aria-label"] = "Close"
+                                                i(classes = "fa fa-times")
+                                            }
+                                        }
+                                        div(classes = "modal-body") {
+                                            p {
+                                                id = "dialog-move-element-current-path"
+                                            }
+                                            input {
+                                                id = "dialog-move-element-future-path"
+                                            }
+                                        }
+                                        div(classes = "modal-footer") {
+                                            button(classes = "btn btn-secondary") {
+                                                type = ButtonType.button
+                                                attributes["data-dismiss"] = "modal"
+                                                +"Close"
+                                            }
+                                            button(classes = "montreee-api-button btn btn-primary") {
+                                                id = "dialog-move-element-move-button"
+                                                type = ButtonType.button
+                                                attributes["data-dismiss"] = "modal"
+                                                attributes["data-method"] = "PUT"
+                                                attributes["data-url"] = "api/tree/edit/move"
+                                                attributes["data-load-after-view-url"] = if (!path.isBlank()) "montreee/$path" else "montreee"
+                                                +"Move"
                                             }
                                         }
                                     }
@@ -204,18 +206,18 @@ private fun DIV.element(
                     attributes["data-parameter-path"] = "${it.path}"
                     +"delete"
                 }
-                button(classes = "btn btn-primary") {
+                button(classes = "montreee-rename-element-button btn btn-primary") {
                     type = ButtonType.button
                     attributes["data-toggle"] = "modal"
                     attributes["data-target"] = "#dialog-rename-element"
-                    onClick = "dialogRenameElement(\"${it.path}\")"
+                    attributes["data-path"] = it.path.toString()
                     +"rename"
                 }
-                button(classes = "btn btn-primary") {
+                button(classes = "montreee-move-element-button btn btn-primary") {
                     type = ButtonType.button
                     attributes["data-toggle"] = "modal"
                     attributes["data-target"] = "#dialog-move-element"
-                    onClick = "dialogMoveElement(\"${it.path}\")"
+                    attributes["data-path"] = it.path.toString()
                     +"move"
                 }
             }
@@ -230,19 +232,19 @@ private fun DIV.element(
                     attributes["data-parameter-path"] = "${it.path}"
                     +"delete"
                 }
-                button(classes = "btn btn-primary") {
+                button(classes = "montreee-rename-element-button btn btn-primary") {
                     type = ButtonType.button
                     attributes["data-toggle"] = "modal"
                     attributes["data-target"] = "#dialog-rename-element"
-                    onClick = "dialogRenameElement(\"${it.path}\")"
+                    attributes["data-path"] = it.path.toString()
                     +"rename"
                 }
-                button(classes = "btn btn-primary") {
+                button(classes = "montreee-move-element-button btn btn-primary") {
                     type = ButtonType.button
                     attributes["data-toggle"] = "modal"
                     attributes["data-target"] = "#dialog-move-element"
-                    onClick = "dialogMoveElement(\"${it.path}\")"
-                    +"Move"
+                    attributes["data-path"] = it.path.toString()
+                    +"move"
                 }
             }
         }

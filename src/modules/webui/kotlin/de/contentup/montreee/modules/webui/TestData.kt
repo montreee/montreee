@@ -19,6 +19,6 @@ object TestData {
                     add(Element(Path(currentPath + "module$it"), Module("TestModule")))
                 }
             }
-            add(8)
+            add(4)
         }
 }
