@@ -6,16 +6,16 @@ import de.contentup.montreee.modules.webui.app.ui.htmlDsl.comment
 import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.script
 import de.contentup.montreee.modules.webui.app.ui.util.respondRawHtmlWithSectionComments
 import de.contentup.montreee.modules.webui.repository.Element
-import de.contentup.montreee.modules.webui.repository.Path
 import de.contentup.montreee.modules.webui.repository.types.Folder
+import de.contentup.montreee.modules.webui.usecases.ListDirectChildes
 import io.ktor.application.*
 import io.ktor.util.pipeline.*
 import kotlinx.html.*
 
 suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: ApplicationContext) {
-    val path = call.parameters.getAll("path")?.joinToString("/") ?: ""
+    val path = (call.parameters.getAll("path")?.joinToString("/") ?: "").ifBlank { "" }
 
-    val content = context.repository.childes(Path(path.ifBlank { "" }), 1)
+    val content = ListDirectChildes(context)(path)
 
     call.respondRawHtmlWithSectionComments {
         comment("view") {
@@ -40,7 +40,7 @@ suspend fun PipelineContext<Unit, ApplicationCall>.montreeeView(context: Applica
                     var currentPath = ""
                     (if (!path.isBlank()) "montreee/$path" else "montreee").forEach {
                         when (it) {
-                            '/'  -> {
+                            '/' -> {
                                 li {
                                     a(classes = "montreee-xhr-link") {
                                         href = currentPath
