@@ -65,7 +65,7 @@ class InMemoryListRepository(list: MutableList<Element> = mutableListOf()) : Rep
 
         val element = internalFind(from)
         if (element == null || internalFind(to) != null) return null
-        val childes = internalChildes(from)
+        val childes = childes(from)
         moveElement(from, to)
         childes.forEach {
             moveElement(it.path, Path(to.trace + it.path.trace.subList(from.trace.size, it.path.trace.size)))

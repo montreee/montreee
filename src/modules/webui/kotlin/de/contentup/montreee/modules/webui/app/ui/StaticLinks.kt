@@ -32,10 +32,6 @@ object StaticLinks {
 
     object Assets {
         val MontreeeLogo = "ui/assets/brand/logo.svg"
-
-        object Icons {
-            val FreeSymboleDefs = "ui/assets/icons/free-symbol-defs.svg"
-        }
     }
 }
 
