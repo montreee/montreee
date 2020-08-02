@@ -23,19 +23,20 @@ object StaticLinks {
     }
 
     object CSS {
+
         val ChartJS = "ui/css/chart.css".useMinIfDevelopmentIsDisabled()
         val CoreUIChartsJS = "ui/css/coreui-chartjs.css".useMinIfDevelopmentIsDisabled()
         val Pace = "ui/css/pace.css".useMinIfDevelopmentIsDisabled()
         val Fontawesome = "ui/css/fontawesome.css".useMinIfDevelopmentIsDisabled()
         val Montreee = "ui/css/montreee.css".useMinIfDevelopmentIsDisabled()
+
+        //TODO add ".useMinIfDevelopmentIsDisabled()" check if min version works
+        //TODO there appears to be a problem with encoding unicode letters while minifying
+        val Icons = "ui/css/icons.css"
     }
 
     object Assets {
         val MontreeeLogo = "ui/assets/brand/logo.svg"
-
-        object Icons {
-            val FreeSymboleDefs = "ui/assets/icons/free-symbol-defs.svg"
-        }
     }
 }
 

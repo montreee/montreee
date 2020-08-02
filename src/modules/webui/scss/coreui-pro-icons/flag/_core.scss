@@ -1,0 +1,16 @@
+[class^="#{$coreui-flag-icons-prefix}"], [class*=" #{$coreui-flag-icons-prefix}"] {
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  position: relative;
+  display: inline-block;
+  width: 1.33333333em;
+  line-height: 1em;
+}
+
+@each $icon, $unicode in $flag-icons {
+  $icon-lower: to-lower-case(#{$icon});
+  .#{$coreui-flag-icons-prefix}#{$icon-lower} {
+    background-image: url(../assets/icons/svg/flag/#{$coreui-flag-icons-prefix}#{$icon}.svg);
+  }
+}

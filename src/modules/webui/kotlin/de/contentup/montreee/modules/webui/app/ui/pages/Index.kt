@@ -5,7 +5,6 @@ import de.contentup.montreee.modules.webui.app.ui.StaticLinks
 import de.contentup.montreee.modules.webui.app.ui.htmlDsl.comment
 import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.html5Doctype
 import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.script
-import de.contentup.montreee.modules.webui.app.ui.htmlDsl.tags.use
 import de.contentup.montreee.modules.webui.app.ui.util.respondRawHtmlWithSectionComments
 import io.ktor.application.*
 import io.ktor.util.pipeline.*
@@ -44,6 +43,7 @@ suspend fun PipelineContext<Unit, ApplicationCall>.index(context: ApplicationCon
                 comment("styles sheets") {
                     styleLink(StaticLinks.CSS.Pace)
                     styleLink(StaticLinks.CSS.Fontawesome)
+                    styleLink(StaticLinks.CSS.Icons)
                     styleLink(StaticLinks.CSS.Montreee)
                 }
 
@@ -76,12 +76,12 @@ suspend fun PipelineContext<Unit, ApplicationCall>.index(context: ApplicationCon
                                         sidebarNavItem(
                                                 "Dashboard",
                                                 "main",
-                                                "${StaticLinks.Assets.Icons.FreeSymboleDefs}#cui-speedometer"
+                                                "icon-speedometer"
                                         )
                                         sidebarNavItem(
                                                 "Montreee",
                                                 "montreee",
-                                                "${StaticLinks.Assets.Icons.FreeSymboleDefs}#cui-folder"
+                                                "icon-folder"
                                         )
                                     }
 
@@ -149,14 +149,10 @@ suspend fun PipelineContext<Unit, ApplicationCall>.index(context: ApplicationCon
     }
 }
 
-private fun LI.sidebarNavItem(text: String = "", link: String = "", iconLink: String = "") {
+private fun LI.sidebarNavItem(text: String = "", link: String = "", iconClass: String = "") {
     a(classes = "montreee-sidebar-nav-link") {
         href = link
-        svg(classes = "montreee-sidebar-nav-icon") {
-            use {
-                attributes["xlink:href"] = iconLink
-            }
-        }
+        i(classes = "montreee-sidebar-nav-icon $iconClass") {}
         +text
     }
 }
