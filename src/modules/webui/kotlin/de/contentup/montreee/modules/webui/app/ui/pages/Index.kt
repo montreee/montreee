@@ -43,6 +43,7 @@ suspend fun PipelineContext<Unit, ApplicationCall>.index(context: ApplicationCon
                 comment("styles sheets") {
                     styleLink(StaticLinks.CSS.Pace)
                     styleLink(StaticLinks.CSS.Fontawesome)
+                    styleLink(StaticLinks.CSS.Icons)
                     styleLink(StaticLinks.CSS.Montreee)
                 }
 

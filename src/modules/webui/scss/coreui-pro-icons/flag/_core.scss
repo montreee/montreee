@@ -1,4 +1,4 @@
-[class^="#{$coreui-icons-prefix}"], [class*=" #{$coreui-icons-prefix}"] {
+[class^="#{$coreui-flag-icons-prefix}"], [class*=" #{$coreui-flag-icons-prefix}"] {
   background-size: contain;
   background-position: 50%;
   background-repeat: no-repeat;
@@ -10,7 +10,7 @@
 
 @each $icon, $unicode in $flag-icons {
   $icon-lower: to-lower-case(#{$icon});
-  .#{$coreui-icons-prefix}#{$icon-lower} {
-    background-image: url(../assets/icons/svg/flag/#{$coreui-icons-prefix}#{$icon}.svg);
+  .#{$coreui-flag-icons-prefix}#{$icon-lower} {
+    background-image: url(../assets/icons/svg/flag/#{$coreui-flag-icons-prefix}#{$icon}.svg);
   }
 }

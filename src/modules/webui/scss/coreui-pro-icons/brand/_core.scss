@@ -9,7 +9,7 @@
   font-style: normal;
 }
 
-[class^="#{$coreui-icons-prefix}"], [class*=" #{$coreui-icons-prefix}"] {
+[class^="#{$coreui-brand-icons-prefix}"], [class*=" #{$coreui-brand-icons-prefix}"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'CoreUI-Icons-Brand' !important;
   speak: none;
@@ -25,7 +25,7 @@
 }
 
 @each $icon, $unicode in $brand-icons {
-  .#{$coreui-icons-prefix}#{$icon} {
+  .#{$coreui-brand-icons-prefix}#{$icon} {
     &:before {
       content: unicode($unicode);
     }
