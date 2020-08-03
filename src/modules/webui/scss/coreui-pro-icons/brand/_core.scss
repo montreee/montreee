@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 @font-face {
   font-family: 'CoreUI-Icons-Brand';
   src: url('#{$coreui-icons-font-path}/CoreUI-Icons-Brand.eot?64h6xh');
@@ -24,10 +26,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+@function unicode($str) {
+  @return unquote("\"")+unquote(str-insert($str, "\\", 1))+unquote("\"")
+}
+
 @each $icon, $unicode in $brand-icons {
   .#{$coreui-brand-icons-prefix}#{$icon} {
     &:before {
-      content: unicode($unicode);
+      content: unicode("#{$unicode}");
     }
   }
 }
