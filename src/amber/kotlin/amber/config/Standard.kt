@@ -14,6 +14,6 @@ fun Config.number(path: String = "") = NumberDelegate(this, path)
 
 fun Config.boolean(path: String = "") = BooleanDelegate(this, path)
 
-fun <T> Config.fallback(delegate: Delegate<T>, fallback: Delegate<T>) = FallbackDelegate(delegate, fallback)
+fun <T> fallback(delegate: Delegate<T>, fallback: Delegate<T>) = FallbackDelegate(delegate, fallback)
 
 fun Config.sub(path: String) = SubConfig(path, this)

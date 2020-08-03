@@ -81,8 +81,8 @@ class RenderModule(version: Version) : MontreeeModule("Montreee Render Module", 
         Slf4JLogBinder.register(logger)
 
         apiClient = KtorWSBdtpApiClient(
-                config.core.host,
-                config.core.port.toInt(),
+                config.render.host,
+                config.render.port.toInt(),
                 config.encryption,
                 Logger("Render Module KtorWSBdtpApiClient Logger", logger),
                 -1,
