@@ -5,34 +5,30 @@ import de.contentup.montreee.module.runIfDevelopmentIsDisabled
 object StaticLinks {
     object JS {
         object Lib {
-            val JQuery = "ui/js/lib/jquery.js".useMinIfDevelopmentIsDisabled()
-            val CoreUI = "ui/js/lib/coreui.js".useMinIfDevelopmentIsDisabled()
-            val ChartJS = "ui/js/lib/chart.js".useMinIfDevelopmentIsDisabled()
-            val CoreUIChartsJS = "ui/js/lib/coreui-chartjs.js".useMinIfDevelopmentIsDisabled()
-            val Pace = "ui/js/lib/pace.js".useMinIfDevelopmentIsDisabled()
-            val IfBreakpoint = "ui/js/lib/if-breakpoint.js".useMinIfDevelopmentIsDisabled()
+            val JQuery = "ui/js/lib/jquery.js".useMin()
+            val CoreUI = "ui/js/lib/coreui.js".useMin()
+            val ChartJS = "ui/js/lib/chart.js".useMin()
+            val CoreUIChartsJS = "ui/js/lib/coreui-chartjs.js".useMin()
+            val Pace = "ui/js/lib/pace.js".useMin()
+            val IfBreakpoint = "ui/js/lib/if-breakpoint.js".useMin()
         }
 
-        val ChartJSResizeFix = "ui/js/chartjs-resize-fix.js".useMinIfDevelopmentIsDisabled()
-        val Before = "ui/js/before.js".useMinIfDevelopmentIsDisabled()
-        val Sidebar = "ui/js/sidebar.js".useMinIfDevelopmentIsDisabled()
-        val Views = "ui/js/views.js".useMinIfDevelopmentIsDisabled()
-        val ApiButtons = "ui/js/api-buttons.js".useMinIfDevelopmentIsDisabled()
-        val DialogMoveElements = "ui/js/dialog-move-element.js".useMinIfDevelopmentIsDisabled()
-        val DialogRenameElements = "ui/js/dialog-rename-element.js".useMinIfDevelopmentIsDisabled()
+        val ChartJSResizeFix = "ui/js/chartjs-resize-fix.js".useMin()
+        val Before = "ui/js/before.js".useMin()
+        val Sidebar = "ui/js/sidebar.js".useMin()
+        val Views = "ui/js/views.js".useMin()
+        val ApiButtons = "ui/js/api-buttons.js".useMin()
+        val DialogMoveElements = "ui/js/dialog-move-element.js".useMin()
+        val DialogRenameElements = "ui/js/dialog-rename-element.js".useMin()
     }
 
     object CSS {
-
-        val ChartJS = "ui/css/chart.css".useMinIfDevelopmentIsDisabled()
-        val CoreUIChartsJS = "ui/css/coreui-chartjs.css".useMinIfDevelopmentIsDisabled()
-        val Pace = "ui/css/pace.css".useMinIfDevelopmentIsDisabled()
-        val Fontawesome = "ui/css/fontawesome.css".useMinIfDevelopmentIsDisabled()
-        val Montreee = "ui/css/montreee.css".useMinIfDevelopmentIsDisabled()
-
-        //TODO add ".useMinIfDevelopmentIsDisabled()" check if min version works
-        //TODO there appears to be a problem with encoding unicode letters while minifying
-        val Icons = "ui/css/icons.css"
+        val ChartJS = "ui/css/chart.css".useMin()
+        val CoreUIChartsJS = "ui/css/coreui-chartjs.css".useMin()
+        val Pace = "ui/css/pace.css".useMin()
+        val Fontawesome = "ui/css/fontawesome.css".useMin()
+        val Montreee = "ui/css/montreee.css".useMin()
+        val Icons = "ui/css/icons.css".useMin()
     }
 
     object Assets {
@@ -40,4 +36,4 @@ object StaticLinks {
     }
 }
 
-fun String.useMinIfDevelopmentIsDisabled() = runIfDevelopmentIsDisabled { replace(".", ".min.") }
+fun String.useMin() = runIfDevelopmentIsDisabled { replace(".", ".min.") }
