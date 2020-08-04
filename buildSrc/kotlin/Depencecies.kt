@@ -4,8 +4,8 @@ object Versions {
     val kotlinxSerialization = "0.20.0"
     val kaml = "0.18.1"
     val ktor = "1.3.2"
-    val klock = "1.11.14"
-    val clikt = "2.8.0"
+    val klock = "1.0.0"
+    val clikt = "2.4.0"
 
     val kotest = "4.1.2"
     val mockk = "1.10.0"
@@ -18,7 +18,7 @@ object Deps {
     val kotlinSerializationRuntime =
             "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
     val kaml = "com.charleskorn.kaml:kaml:${Versions.kaml}"
-    val klock = "com.soywiz.korlibs.klock:klock-jvm:${Versions.klock}"
+    val klock = "com.soywiz:klock-jvm:${Versions.klock}"
     val ktorServer = "io.ktor:ktor-server-core:${Versions.ktor}"
     val ktorServerWebSocket = "io.ktor:ktor-websockets:${Versions.ktor}"
     val ktorServerNetty = "io.ktor:ktor-server-netty:${Versions.ktor}"
