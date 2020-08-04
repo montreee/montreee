@@ -9,7 +9,7 @@ dependencies {
 
 sass {
     download {
-        version = "1.26.3"
+        version = "1.26.10"
         downloadBaseUrl = "https://github.com/sass/dart-sass/releases/download"
         outputDir = file("$buildDir/dart-sass")
     }

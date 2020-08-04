@@ -1,7 +1,7 @@
 dependencies {
     api(Deps.kotlinCoroutines)
     api(Deps.kotlinSerializationRuntime)
-    api(Deps.kotlinSerializationYamlSupport)
+    api(Deps.kaml)
     api(Deps.klock)
     api(Deps.ktorServer)
     api(Deps.ktorServerNetty)

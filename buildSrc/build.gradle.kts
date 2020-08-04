@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    api("com.soywiz:klock-jvm:1.0.0")
+    api("com.soywiz.korlibs.klock:klock-jvm:1.11.14")
 }
 
 the<JavaPluginConvention>().sourceSets.getByName("main").java.srcDirs("kotlin")

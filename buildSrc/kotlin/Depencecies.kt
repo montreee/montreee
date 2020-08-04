@@ -1,24 +1,24 @@
 object Versions {
-    val kotlinStdlib = "1.3.71"
-    val kotlinCoroutines = "1.2.1"
-    val kotlinSerializationRuntime = "0.14.0"
-    val kotlinSerializationYamlSupport = "0.15.0"
-    val ktor = "1.3.0"
-    val klock = "1.0.0"
-    val clikt = "2.1.0"
+    val kotlin = "1.3.72"
+    val kotlinxCoroutines = "1.3.8"
+    val kotlinxSerialization = "0.20.0"
+    val kaml = "0.18.1"
+    val ktor = "1.3.2"
+    val klock = "1.11.14"
+    val clikt = "2.8.0"
 
-    val kotest = "4.0.3"
+    val kotest = "4.1.2"
     val mockk = "1.10.0"
 }
 
 object Deps {
-    val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinStdlib}"
-    val kotlinStdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlinStdlib}"
-    val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
+    val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+    val kotlinStdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+    val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinxCoroutines}"
     val kotlinSerializationRuntime =
-            "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinSerializationRuntime}"
-    val kotlinSerializationYamlSupport = "com.charleskorn.kaml:kaml:${Versions.kotlinSerializationYamlSupport}"
-    val klock = "com.soywiz:klock-jvm:${Versions.klock}"
+            "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
+    val kaml = "com.charleskorn.kaml:kaml:${Versions.kaml}"
+    val klock = "com.soywiz.korlibs.klock:klock-jvm:${Versions.klock}"
     val ktorServer = "io.ktor:ktor-server-core:${Versions.ktor}"
     val ktorServerWebSocket = "io.ktor:ktor-websockets:${Versions.ktor}"
     val ktorServerNetty = "io.ktor:ktor-server-netty:${Versions.ktor}"

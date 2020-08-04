@@ -8,8 +8,8 @@ val buildInfoText = "Montreee is a CMS by ContentUp UG © 2020"
 
 plugins {
     idea
-    kotlin("jvm") version Versions.kotlinStdlib
-    id("kotlinx-serialization") version Versions.kotlinStdlib
+    kotlin("jvm") version Versions.kotlin
+    id("kotlinx-serialization") version Versions.kotlin
 }
 
 allprojects {
